@@ -23,14 +23,15 @@
 <body>
     <section class="flex justify-center items-center min-h-screen">
         <div class="mx-auto w-full">
-            <div class="flex justify-center items-center w-full min-h-[16rem] bg-sky-500 drop-shadow-lg rounded">
-                <div class="text-white m-20">
+            <div class="flex justify-center items-center w-full min-h-[16rem] bg-white drop-shadow-lg rounded">
+                <div class="m-20">
                     <div class="flex w-full justify-center">
                         <h1 class="font-bold text-xl sm:text-3xl">Bienvenido al backend de huertos</h1>
 
                     </div>
                     <div class="mt-12">
-                        <p class="overflow-clip">Con este back-end podras registrar y obtener información sobre tus huertos. Estos son sus diferentes <spam class="font-bold">end-points</spam>.</p>
+                        <p class="overflow-clip">Con este back-end podras registrar y obtener información sobre tus
+                            huertos. Estos son sus diferentes <spam class="font-bold">end-points</spam>.</p>
                     </div>
                     <!-- titulo -->
                     <div class="mt-6">
@@ -38,41 +39,48 @@
                             <span>End points para los usuarios</span> <span class="font-bold">/api/v1/user</span>
                         </div>
                     </div>
-                    
+
                     <!-- contenido end points -->
                     <div class="mt-5">
                         <!-- endpoint  -->
-                        <div class="w-auto">
-                            <span class="p-1 rounded font-mono text-sm bg-indigo-600">POST</span> <span class="">/api/v1/user/register</span> - <span> Con este end point podras registrarte como usuario.</span>
+                        <div class="w-auto mb-6">
+                            <span class="p-3 rounded text-white font-mono text-sm bg-indigo-600">POST</span> <span
+                                class="font-bold">/api/v1/user/register</span> - <span> Con este end point podras
+                                registrarte como usuario.</span>
                         </div>
                         <!-- cuerpo de la peticion -->
-                        <div class="mt-2 p-3 bg-gray-800 rounded">
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
                             <div class="flex justify-end">
                                 <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
                             </div>
                             <div class="pl-3">
                                 <p class="text-indigo-500 font-bold">{</p>
-                                <p><span class="pl-2 italic text-amber-600">"nick"</span>: "pepito"<span class="text-gray-400">,</span></p>
-                                <p><span class="pl-2 italic text-amber-600">"password"</span>: "pepito123"<span class="text-gray-400"></span></p>
+                                <p><span class="pl-2 italic text-amber-600">"nick"</span>: "pepito"<span
+                                        class="text-gray-400">,</span></p>
+                                <p><span class="pl-2 italic text-amber-600">"password"</span>: "pepito123"<span
+                                        class="text-gray-400"></span></p>
                                 <p class="text-indigo-500 font-bold">}</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-5">
                         <!-- end point -->
-                        <div class="w-auto">
-                            <span class="p-1 rounded font-mono text-sm bg-indigo-600">POST</span> <span class="">/api/v1/user/login</span>
+                        <div class="w-auto mb-6">
+                            <span class="p-3 rounded text-white font-mono text-sm bg-indigo-600">POST</span> <span
+                                class="font-bold">/api/v1/user/login</span> - <span>Con este end point podras ingresar como usuario de la plataforma.</span>
                         </div>
                         <!-- cuerpo de la peticion -->
-                        <div class="mt-2 p-3 bg-gray-800 rounded">
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
                             <div class="flex justify-end">
                                 <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
                             </div>
                             <div class="pl-3">
                                 <p class="text-indigo-500 font-bold">{</p>
-                                <p><span class="pl-2 italic text-amber-600">"nick"</span>: "pepito"<span class="text-gray-400">,</span></p>
-                                <p><span class="pl-2 italic text-amber-600">"password"</span>: "pepito123"<span class="text-gray-400"></span></p>
+                                <p><span class="pl-2 italic text-amber-600">"nick"</span>: "pepito"<span
+                                        class="text-gray-400">,</span></p>
+                                <p><span class="pl-2 italic text-amber-600">"password"</span>: "pepito123"<span
+                                        class="text-gray-400"></span></p>
                                 <p class="text-indigo-500 font-bold">}</p>
                             </div>
                         </div>
@@ -81,18 +89,54 @@
                     <div class="mt-5">
                         <!-- end point -->
 
-                        <div class="w-auto">
-                            <span class="p-1 rounded font-mono text-sm bg-indigo-600">POST</span> <span class="">/api/v1/user/register-huerto</span>
+                        <div class="w-auto mb-6">
+                            <span class="p-3 rounded text-white font-mono text-sm bg-indigo-600">POST</span> <span
+                                class="font-bold">/api/v1/user/register-huerto</span> - <span>Con este end point podras registrar los huertos de un usuario.</span>
+                        </div>
+                        <!-- Cabecera de la petición -->
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                            <div class="flex justify-end">
+                                <span class="absolute p-1 rounded text-sm bg-fuchsia-600">HEAD</span>
+                            </div>
+                            <div class="pl-3">
+                                <p class="text-indigo-500 font-bold">{</p>
+                                <p><span class="pl-2 italic text-amber-600">"Autorization"</span>: "Huerto 1"<span
+                                        class="text-gray-400"></span></p>
+                                <p class="text-indigo-500 font-bold">}</p>
+                            </div>
                         </div>
                         <!-- cuerpo de la peticion -->
-                        <div class="mt-2 p-3 bg-gray-800 rounded">
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
                             <div class="flex justify-end">
                                 <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
                             </div>
                             <div class="pl-3">
                                 <p class="text-indigo-500 font-bold">{</p>
-                                <p><span class="pl-2 italic text-amber-600">"id_user"</span>: "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"<span class="text-gray-400">,</span></p>
-                                <p><span class="pl-2 italic text-amber-600">"name"</span>: "Huerto 1"<span class="text-gray-400"></span></p>
+                                <p><span class="pl-2 italic text-amber-600">"name"</span>: "Huerto 1"<span
+                                        class="text-gray-400"></span></p>
+                                <p class="text-indigo-500 font-bold">}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <!-- end point -->
+
+                        <div class="w-auto mb-6">
+                            <span class="p-3 rounded text-white font-mono text-sm bg-sky-600">GET</span> <span
+                                class="font-bold">/api/v1/user/huertos/<span
+                                    class="italic text-red-600">:limit</span>/<span
+                                    class="italic text-red-600">:page</span></span> - <span>Con este end point podras listar los diferentes huertos de un usuario.</span>
+                        </div>
+                        <!-- Cabecera de la petición -->
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                            <div class="flex justify-end">
+                                <span class="absolute p-1 rounded text-sm bg-fuchsia-600">HEAD</span>
+                            </div>
+                            <div class="pl-3">
+                                <p class="text-indigo-500 font-bold">{</p>
+                                <p><span class="pl-2 italic text-amber-600">"Autorization"</span>: "Huerto 1"<span
+                                        class="text-gray-400"></span></p>
                                 <p class="text-indigo-500 font-bold">}</p>
                             </div>
                         </div>
@@ -108,25 +152,42 @@
 
                     <!-- contenido end points -->
                     <div class="mt-5">
-                        <div class="w-auto">
-                            <span class="p-1 rounded font-mono text-sm bg-indigo-600">POST</span> <span class="">/api/v1/arduino/register-climate</span>
+                        <div class="w-auto mb-6">
+                            <span class="p-3 rounded text-white font-mono text-sm bg-indigo-600">POST</span> <span
+                                class="font-bold">/api/v1/arduino/register-climate</span>
+                        </div>
+                        <!-- Cabecera de la petición -->
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                            <div class="flex justify-end">
+                                <span class="absolute p-1 rounded text-sm bg-fuchsia-600">HEAD</span>
+                            </div>
+                            <div class="pl-3">
+                                <p class="text-indigo-500 font-bold">{</p>
+                                <p><span class="pl-2 italic text-amber-600">"Autorization"</span>: "Huerto 1"<span
+                                        class="text-gray-400"></span></p>
+                                <p class="text-indigo-500 font-bold">}</p>
+                            </div>
                         </div>
                         <!-- cuerpo de la peticion -->
-                        <div class="mt-2 p-3 bg-gray-800 rounded">
+                        <div class="mt-2 p-3 bg-gray-800 rounded text-white">
                             <div class="flex justify-end">
                                 <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
                             </div>
                             <div class="pl-3">
                                 <p class="text-indigo-500 font-bold">{</p>
-                                <p><span class="pl-2 italic text-amber-600">"id_arduino"</span>: <span class="">"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"</span><span class="text-gray-400">,</span></p>
-                                <p><span class="pl-2 italic text-amber-600">"temperatura"</span>: <span class="text-indigo-300">1.25</span><span class="text-gray-400">,</span></p>
-                                <p><span class="pl-2 italic text-amber-600">"humedad"</span>: <span class="text-indigo-300">0.25</span><span class="text-gray-400"></span></p>
+                                <p><span class="pl-2 italic text-amber-600">"id_arduino"</span>: <span
+                                        class="">"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"</span><span
+                                        class="text-gray-400">,</span></p>
+                                <p><span class="pl-2 italic text-amber-600">"temperatura"</span>: <span
+                                        class="text-indigo-300">1.25</span><span class="text-gray-400">,</span></p>
+                                <p><span class="pl-2 italic text-amber-600">"humedad"</span>: <span
+                                        class="text-indigo-300">0.25</span><span class="text-gray-400"></span></p>
                                 <p class="text-indigo-500 font-bold">}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>

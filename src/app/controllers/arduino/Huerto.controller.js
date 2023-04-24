@@ -42,12 +42,15 @@ export default class HuertoController {
      */
     static async obtenerHuertos(req, res) {
         const { user } = req.body
+        const { limit, page } = req.params
         try {
-            const huertos = await HuertoRepositry.listarHuertos(user._id)
+            const huertos = await HuertoRepositry.listarHuertos(user._id, limit, page)
+            const count = await HuertoRepositry.countarHuertos(user._id)
             return res.status(200).json({
                 ok: true,
                 message: "Esta es la lista de huertos.",
-                data: huertos
+                data: huertos,
+                pages: count / limit
             })
         } catch (error) {
             console.log("❌ Error System (HuertoController):", error)

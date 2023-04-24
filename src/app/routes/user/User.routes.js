@@ -15,5 +15,6 @@ export default class UserRoutes {
         this.router.post("/register", UsuarioController.registrarUsuario)
         this.router.post("/login", UsuarioController.autenticarUsuario)
         this.router.post("/register-huerto", this.guardian.responseGuardianAuthentication, HuertoController.registrarHuerto)
+        this.router.get("/huertos/:limit/:page", this.guardian.responseGuardianAuthentication, HuertoController.obtenerHuertos)
     }
 }
