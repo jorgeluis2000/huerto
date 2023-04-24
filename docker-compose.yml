@@ -1,16 +1,11 @@
 version: '3.9'
 services:
-  agoradev-carga-datos:
+  huertos:
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
-    container_name: agoradev-carga-datos
+    container_name: huertos
     ports:
-      - '4102:4102'
-    networks:
-      - connection-micro
+      - '4102:5555'
     env_file: .env
-networks:
-  connection-micro:
-    name: agoradev

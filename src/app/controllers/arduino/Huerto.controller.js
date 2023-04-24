@@ -1,4 +1,4 @@
-import HuertoRepositry from "../../../utils/repositories/Huerto.repository"
+import HuertoRepositry from "../../../utils/repositories/Huerto.repository.js"
 
 export default class HuertoController {
 
@@ -40,9 +40,10 @@ export default class HuertoController {
      * @param {import("express").Request} req - Request del controlador.
      * @param {import("express").Response} res - Response del controlador
      */
-    obtenerHuertos(req, res) {
+    static async obtenerHuertos(req, res) {
+        const { user } = req.body
         try {
-            const huertos = []
+            const huertos = await HuertoRepositry.listarHuertos(user._id)
             return res.status(200).json({
                 ok: true,
                 message: "Esta es la lista de huertos.",

@@ -1,8 +1,8 @@
 import express from "express"
 import path from "path"
+import { cwd } from "process"
 import UserRoutes from "./user/User.routes.js"
 import ArduinoRoutes from "./arduino/Arduino.routes.js"
-import { cwd } from "process"
 
 
 export default class AppRoutes {
