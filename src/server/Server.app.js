@@ -2,6 +2,7 @@ import cors from "cors"
 import express, { response } from "express"
 import AppRoutes from "../app/routes/App.routes.js";
 import { REST_PORT } from "../app/environments/server.env.js";
+import "../app/database/connection.db.js"
 
 
 export default class ServerApp {
