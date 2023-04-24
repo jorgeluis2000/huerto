@@ -1,0 +1,25 @@
+{
+  "name": "back-end-huertos",
+  "version": "1.0.0",
+  "description": "Este es un pequeño back que buscará almacenar información de un huerto.",
+  "main": "./src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [
+    "HUERTO",
+    "HUERTOS"
+  ],
+  "author": "Juana Esteban Güiza Granobles",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "crypto-js": "4.1.1",
+    "dotenv": "16.0.3",
+    "express": "4.18.2",
+    "express-validator": "7.0.1",
+    "jsonwebtoken": "9.0.0",
+    "mongoose": "7.0.4"
+  }
+}

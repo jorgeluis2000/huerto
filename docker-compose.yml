@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  agoradev-carga-datos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: agoradev-carga-datos
+    ports:
+      - '4102:4102'
+    networks:
+      - connection-micro
+    env_file: .env
+networks:
+  connection-micro:
+    name: agoradev
