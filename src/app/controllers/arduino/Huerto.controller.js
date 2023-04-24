@@ -8,8 +8,8 @@ export default class HuertoController {
      * @param {import("express").Response} res - Response del controlador
      */
     static async registrarHuerto(req, res) {
-        const { name, user } = req.body
         try {
+            const { name, user } = req.body
             const existe_huerto = await HuertoRepositry.existeHuerto(user._id, name)
             if (existe_huerto) {
                 return res.status(200).json({
@@ -41,9 +41,9 @@ export default class HuertoController {
      * @param {import("express").Response} res - Response del controlador
      */
     static async obtenerHuertos(req, res) {
-        const { user } = req.body
-        const { limit, page } = req.params
         try {
+            const { user } = req.body
+            const { limit, page } = req.params
             const huertos = await HuertoRepositry.listarHuertos(user._id, limit, page)
             const count = await HuertoRepositry.countarHuertos(user._id)
             return res.status(200).json({

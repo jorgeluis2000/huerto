@@ -9,8 +9,8 @@ export default class UsuarioController {
      * @param {import("express").Response} res - Response del controlador.
      */
     static async registrarUsuario(req, res) {
-        const { nick, passowrd } = req.body
         try {
+            const { nick, passowrd } = req.body
             const existe_usuario = await UsuarioRepositry.existeUsuario(nick)
 
             if (existe_usuario) {
@@ -44,8 +44,8 @@ export default class UsuarioController {
      * @param {import("express").Response} res - Response del controlador.
      */
     static async autenticarUsuario(req, res) {
-        const { nick, passowrd } = req.body
         try {
+            const { nick, passowrd } = req.body
             const usuario = await UsuarioRepositry.autenticarUsuario(nick, passowrd)
             if (usuario !== null) {
                 return res.status(200).json(
