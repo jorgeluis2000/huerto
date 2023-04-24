@@ -1,27 +1,47 @@
+import { request, response } from "express"
 import UsuarioRepositry from "../../../utils/repositories/Usuario.repository.js"
 import { createToken } from "../../../utils/services/security.service.js"
+import { validationResult } from "express-validator"
 
 export default class UsuarioController {
+
+    constructor() { }
 
     /**
      * Controlador que registra un usuario
      * @param {import("express").Request} req - Request del controlador.
      * @param {import("express").Response} res - Response del controlador.
      */
-    static async registrarUsuario(req, res) {
+    static async registrarUsuario(req = request, res = response) {
         try {
-            const { nick, passowrd } = req.body
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).send({
+                    ok: false,
+                    message: errors.array()[0].msg,
+                    data: null
+                })
+            }
+
+            /**
+             * @type {{
+             * nick: string;
+             * password: string;
+             * }}
+             */
+            const { nick, password } = await req?.body
             const existe_usuario = await UsuarioRepositry.existeUsuario(nick)
 
             if (existe_usuario) {
-                return res.status(200).json({
+                return res.status(400).json({
                     ok: false,
                     message: "Lo sentimos, ya existe un usuario con ese mismo nick.",
                     data: null
                 })
             }
 
-            const usuario_registrado = await UsuarioRepositry.registrarUsuario(nick, passowrd)
+            const usuario_registrado = await UsuarioRepositry.registrarUsuario(nick, password)
 
             return res.status(201).json({
                 ok: true,
@@ -43,15 +63,32 @@ export default class UsuarioController {
      * @param {import("express").Request} req - Request del controlador.
      * @param {import("express").Response} res - Response del controlador.
      */
-    static async autenticarUsuario(req, res) {
+    static async autenticarUsuario(req = request, res = response) {
         try {
-            const { nick, passowrd } = req.body
-            const usuario = await UsuarioRepositry.autenticarUsuario(nick, passowrd)
-            if (usuario !== null) {
-                return res.status(200).json(
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).send({
+                    ok: false,
+                    message: errors.array()[0].msg,
+                    data: null
+                })
+            }
+
+            /**
+             * @type {{
+             * nick: string;
+             * password: string;
+             * }}
+             */
+            const { nick, password } = req.body
+            const usuario = await UsuarioRepositry.autenticarUsuario(nick, password)
+            if (usuario === null) {
+                return res.status(400).json(
                     {
                         ok: false,
-                        message: "Credencailes "
+                        message: "Lo sentimos, aún no te has registrado en nuestra plataforma.",
+                        data: null
                     }
                 )
             }

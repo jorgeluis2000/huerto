@@ -1,11 +1,8 @@
 import { Router } from "express"
 
-export default class ArduinoRoutes {
-    constructor() {
-        this.router = Router()
-    }
+let router = Router()
 
-    arduinoRoutesPost() {
-        this.router.post("/register-wether")
-    }
-}
+router.post("/register-wether")
+
+
+export default router

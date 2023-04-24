@@ -1,5 +1,5 @@
-import cors from "cors"
 import express, { response } from "express"
+import cors from "cors"
 import AppRoutes from "../app/routes/App.routes.js";
 import { REST_PORT } from "../app/environments/server.env.js";
 import "../app/database/connection.db.js"
@@ -8,16 +8,15 @@ import "../app/database/connection.db.js"
 export default class ServerApp {
     constructor() {
         this.app = express()
-        this.routes()
         this.middlewares()
+        this.routes()
     }
 
     /**
      * Método que implementa las rutas.
      */
     routes() {
-        const router = new AppRoutes()
-        this.app.use(router.app_routes)
+        this.app.use(AppRoutes)
     }
 
     /**
@@ -33,6 +32,7 @@ export default class ServerApp {
             next();
         });
         this.app.use(express.json({ limit: '20mb' }));
+        this.app.use(express.text());
         this.app.use(express.urlencoded({ limit: '20mb', extended: true }))
     }
 
