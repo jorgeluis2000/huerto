@@ -26,7 +26,7 @@ export default class HuertoRepositry {
      */
     static async crearHuerto(idUsuario, name) {
         try {
-            let huerto = new Huerto({
+            const huerto = new Huerto({
                 id_usuario: idUsuario,
                 name_huerto: name
             })
@@ -47,6 +47,22 @@ export default class HuertoRepositry {
     static async existeHuerto(idUsuario, name) {
         try {
             const huerto = await Huerto.findOne({ id_usuario: idUsuario, name_huerto: name })
+            return (huerto !== null) ? true : false
+        } catch (error) {
+            console.log("❌ Error System (HuertoRepository):", error);
+            return false
+        }
+    }
+
+    /**
+     * Verifica si el usuario ya tiene un huerto con esa id.
+     * @param {import("mongoose").ObjectId} idUsuario - Identificador del dueño del huerto.
+     * @param {string} name - Nombre del huerto.
+     * @returns {Promise<boolean>}
+     */
+    static async existeHuertoId(idUsuario, idHuerto) {
+        try {
+            const huerto = await Huerto.findOne({ id_usuario: idUsuario, _id: idHuerto })
             return (huerto !== null) ? true : false
         } catch (error) {
             console.log("❌ Error System (HuertoRepository):", error);

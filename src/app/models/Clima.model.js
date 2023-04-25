@@ -2,8 +2,8 @@ import mongoose, { Schema } from "mongoose"
 
 const ClimaSchema = new Schema(
     {
-        id_arduino: {
-            type: Schema.Types.ObjectId,
+        id_huerto: {
+            type: String,
             required: true,
             trim: true
         },

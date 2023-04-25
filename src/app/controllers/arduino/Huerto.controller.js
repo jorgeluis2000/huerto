@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator"
 import HuertoRepositry from "../../../utils/repositories/Huerto.repository.js"
 
 export default class HuertoController {
@@ -11,6 +12,16 @@ export default class HuertoController {
      */
     static async registrarHuerto(req = request, res = response) {
         try {
+
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).send({
+                    ok: false,
+                    message: errors.array()[0].msg,
+                    data: null
+                })
+            }
+
             const { name, user } = req.body
             const existe_huerto = await HuertoRepositry.existeHuerto(user._id, name)
             if (existe_huerto) {

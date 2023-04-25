@@ -97,6 +97,7 @@ export default class UsuarioController {
                 id: usuario._id
             }
             const token = createToken(payLoad)
+            res.cookie("huerto-token", token, { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30 * 12 )) })
             return res.status(200).json({
                 ok: true,
                 message: "¡¡Usuario autenticado!!",

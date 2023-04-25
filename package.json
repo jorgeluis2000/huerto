@@ -5,7 +5,8 @@
   "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "docker-start": "sudo docker compose up -d --build"
   },
   "keywords": [
     "HUERTO",

@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose"
 const HuertoSchema = new Schema(
     {
         id_usuario: {
-            type: Schema.Types.ObjectId,
+            type: String,
             required: true,
             trim: true
         },
