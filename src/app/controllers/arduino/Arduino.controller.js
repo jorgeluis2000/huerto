@@ -17,6 +17,7 @@ export default class ArduinoController {
             if (!errors.isEmpty()) {
                 return res.status(400).send({
                     ok: false,
+                    http_code: 4001,
                     message: errors.array()[0].msg,
                     data: null
                 })
@@ -28,7 +29,8 @@ export default class ArduinoController {
             if (!exist_huerto) {
                 return res.status(400).json({
                     ok: false,
-                    message: "Lo sentimos, ese huerto no te pertenece.",
+                    http_code: 4003,
+                    message: "Lo sentimos, no pudimos encontrar resultados.",
                     data: null
                 })
             }
@@ -38,6 +40,7 @@ export default class ArduinoController {
             if(clima === null) {
                 return res.status(400).json({
                     ok: false,
+                    http_code: 5001,
                     message: "Lo sentimos, no se puede registrar el clima del huerto en este momento.",
                     data: null
                 })
@@ -45,6 +48,7 @@ export default class ArduinoController {
 
             return res.status(200).json({
                 ok: true,
+                http_code: 2000,
                 message: "Esta es la lista de registros de climas.",
                 data: clima
             })
@@ -53,6 +57,7 @@ export default class ArduinoController {
             console.log("❌ Error System (ArduinoController):", error)
             return res.status(500).json({
                 ok: false,
+                http_code: 5001,
                 message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
                 data: null
             })
@@ -77,6 +82,7 @@ export default class ArduinoController {
             if(new_page <= 0) {
                 return res.status(400).json({
                     ok: false,
+                    http_code: 4001,
                     message: "El número de paginas comienza desde 1.",
                     data: [],
                     pages: 0
@@ -86,6 +92,7 @@ export default class ArduinoController {
             if( typeof new_limit !== 'number' ||  typeof new_page !== 'number') {
                 return res.status(400).json({
                     ok: false,
+                    http_code: 4001,
                     message: "Los valores tienen un tipo de dato que no corresponde.",
                     data: [],
                     pages: 0
@@ -97,7 +104,8 @@ export default class ArduinoController {
             if (!exist_huerto) {
                 return res.status(400).json({
                     ok: false,
-                    message: "Lo sentimos, ese huerto no te pertenece.",
+                    http_code: 4003,
+                    message: "Lo sentimos, no pudimos encontrar resultados.",
                     data: [],
                     pages: 0
                 })
@@ -108,6 +116,7 @@ export default class ArduinoController {
 
             return res.status(200).json({
                 ok: true,
+                http_code: 2000,
                 message: "Esta es la lista de registros de climas.",
                 data: climas,
                 pages: Math.ceil(count / limit)
@@ -116,6 +125,7 @@ export default class ArduinoController {
             console.log("❌ Error System (ArduinoController):", error)
             return res.status(500).json({
                 ok: false,
+                http_code: 5000,
                 message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
                 data: [],
                 pages: 0

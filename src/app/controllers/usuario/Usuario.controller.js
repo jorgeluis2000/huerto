@@ -20,6 +20,7 @@ export default class UsuarioController {
                 return res.status(400).send({
                     ok: false,
                     message: errors.array()[0].msg,
+                    http_code: 4001,
                     data: null
                 })
             }
@@ -36,6 +37,7 @@ export default class UsuarioController {
             if (existe_usuario) {
                 return res.status(400).json({
                     ok: false,
+                    http_code: 4002,
                     message: "Lo sentimos, ya existe un usuario con ese mismo nick.",
                     data: null
                 })
@@ -45,6 +47,7 @@ export default class UsuarioController {
 
             return res.status(201).json({
                 ok: true,
+                http_code: 2001,
                 message: "Bienvenido, ahora puedes autenticarte con los mismos datos que digitaste.",
                 data: usuario_registrado
             })
@@ -52,6 +55,7 @@ export default class UsuarioController {
             console.log("❌ Error System (UsuarioController):", error)
             return res.status(500).json({
                 ok: false,
+                http_code: 5000,
                 message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
                 data: null
             })
@@ -70,6 +74,7 @@ export default class UsuarioController {
             if (!errors.isEmpty()) {
                 return res.status(400).send({
                     ok: false,
+                    http_code: 4000,
                     message: errors.array()[0].msg,
                     data: null
                 })
@@ -87,6 +92,7 @@ export default class UsuarioController {
                 return res.status(400).json(
                     {
                         ok: false,
+                        http_code: 4003,
                         message: "Lo sentimos, aún no te has registrado en nuestra plataforma.",
                         data: null
                     }
@@ -97,16 +103,18 @@ export default class UsuarioController {
                 id: usuario._id
             }
             const token = createToken(payLoad)
-            res.cookie("huerto-token", token, { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30 * 12 )) })
+            res.cookie("huerto-token", token, { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30 * 12)) })
             return res.status(200).json({
                 ok: true,
-                message: `¡Bienvenido a TuHuerto ${usuario.nick}!`,
+                http_code: 2000,
+                message: `¡Bienvenido ${usuario.nick}! Navega por toda la plataforma.`,
                 data: token
             })
         } catch (error) {
             console.log("❌ Error System (UsuarioController):", error)
             return res.status(500).json({
                 ok: false,
+                http_code: 5000,
                 message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
                 data: null
             })
