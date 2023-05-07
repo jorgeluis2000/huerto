@@ -24,18 +24,20 @@
     <section class="flex justify-center items-center min-h-screen">
         <div class="mx-auto w-full">
             <div class="flex justify-center items-center w-full bg-white drop-shadow-lg rounded">
-                <div class="m-20">
+                <div class="my-10 mx-5 md:my-20 md:mx-96">
                     <section id="#info">
                         <div class="flex w-full justify-center">
-                            <h1 class="font-bold text-xl sm:text-3xl">Bienvenido al backend de huertos</h1>
+                            <h1 class="font-bold text-xl text-green-700 sm:text-3xl">Bienvenido al backend de huertos
+                            </h1>
 
                         </div>
                         <div class="mt-12">
                             <p class="overflow-clip">Con este back-end podras registrar y obtener información sobre tus
-                                huertos. Estos son sus diferentes <spam class="font-bold">end-points</spam>.</p>
+                                huertos. Estos son sus diferentes <spam class="font-bold text-green-600">end-points
+                                </spam>.</p>
                         </div>
                     </section>
-                    <section id="endpoints">
+                    <section id="endpoints-user">
                         <!-- titulo -->
                         <div class="mt-6">
                             <div class="text-center w-full text-xl">
@@ -240,12 +242,101 @@
                         </div>
                     </section>
 
+                    <section id="endpoint-plants">
+                        <!-- titulo -->
+                        <div class="mt-20">
+                            <div class="text-center w-full text-base text-lg">
+                                <span class="uppercase font-semibold">End points para el historial de plantas</span> -
+                                <span class="font-bold">/api/v1/plant</span>
+                            </div>
+                        </div>
+
+                        <!-- contenido end points -->
+                        <div class="mt-16">
+                            <div class="w-auto mb-6">
+                                <span
+                                    class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-indigo-600">POST</span>
+                                <span class="font-bold">/api/v1/plant/register</span> -
+                                <span>
+                                    Con este end-point registraras una planta al historial informativo de plantas.
+                                </span>
+                            </div>
+                            <!-- cuerpo de la peticion -->
+                            <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                                <div class="flex justify-end">
+                                    <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
+                                </div>
+                                <div class="pl-3">
+                                    <p class="text-indigo-500 font-bold">{</p>
+                                    <p><span class="pl-2 italic text-amber-600">"name_plant"</span>: <span
+                                            class="">"Arbol de mango"</span><span class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"description"</span>: <span class="">"Es
+                                            un arbol de mangos"</span><span class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"clime"</span>: <span class="">"Climas
+                                            humedos y calidos"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"flora"</span>: <span class="">"Cada 2
+                                            meses da flor"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"height"</span>: <span
+                                            class="text-indigo-500">10.26</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"humidity"</span>: <span
+                                            class="text-indigo-500"><span class="text-indigo-300">[</span>10, 10<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"light"</span>: <span
+                                            class="text-indigo-500">10.26</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"pests"</span>: <span
+                                            class=""><span class="">[</span>"Pajaros", "Hormigas"<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"solutions"</span>: <span
+                                            class=""><span class="text-indigo-300">[</span>"Para evitar
+                                            los pajaros en los arboles...", "Para eviatr las hormigas..."<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"space_earth"</span>: <span
+                                            class="text-indigo-500">10.5</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"specific_care"</span>: <span
+                                            class="">"Algo"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"type_earth"</span>: <span
+                                            class="">"Tierra humedad"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"type_fruit"</span>: <span
+                                            class="">"Mango"</span><span class="text-gray-400"></span></p>
+                                    <p class="text-indigo-500 font-bold">}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <!-- end point -->
+
+                            <div class="w-auto mb-6">
+                                <span
+                                    class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-sky-600">GET</span>
+                                <span class="font-bold">/api/v1/plant/list/<span
+                                        class="italic text-red-600">:limit</span>/<span
+                                        class="italic text-red-600">:page</span></span> - <span>Con este end point
+                                    podras
+                                    listar el log de cambio de clima de cada uno de los huertos.</span>
+                            </div>
+                        </div>
+                    </section>
+
                     <section id="table-code">
                         <div class="mt-24 mb-20 text-center">
                             <h2 class="font-semibold text-xl capitalize">| Tabla de códigos de respuesta |</h2>
                             <p class="mt-5 text-justify">
-                                Esta es la tabla de los códigos de respuesta que encontraras en cada <span class="font-semibold text-green-600">response</span> de cada end-point, 
-                                el código lo podras extraer de la key <span class="font-semibold text-green-600">http_code</span>.
+                                Esta es la tabla de los códigos de respuesta que encontraras en cada <span
+                                    class="font-semibold text-green-600">response</span> de cada end-point,
+                                el código lo podras extraer de la key <span
+                                    class="font-semibold text-green-600">http_code</span>.
                             </p>
                         </div>
                         <div class="shadow-md sm:rounded-lg">
@@ -259,33 +350,41 @@
                             </header>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">5000</div>
-                                <p class="text-justify">Este código hace referencia a un error interno en los microservicios.</p>
+                                <p class="text-justify">Este código hace referencia a un error interno en los
+                                    microservicios.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">5001</div>
-                                <p class="text-justify">Este código hace referencia a un error interno al momento de hacer un registro en la base de datos.</p>
+                                <p class="text-justify">Este código hace referencia a un error interno al momento de
+                                    hacer un registro en la base de datos.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">4001</div>
-                                <p class="text-justify">Este código hace referencia a un error de validación de los valores envíados en la petición, 
+                                <p class="text-justify">Este código hace referencia a un error de validación de los
+                                    valores envíados en la petición,
                                     ya que estos puedan que no correspondan a los valores solicitados.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">4002</div>
-                                <p class="text-justify">Este código hace referencia a error en la validación al momento de enviar la respuesta, especificamete quiere
-                                    decir que un usuario o huerto o objeto ya existe con el valor unico ya sea nombre o nick.</p>
+                                <p class="text-justify">Este código hace referencia a error en la validación al momento
+                                    de enviar la respuesta, especificamete quiere
+                                    decir que un usuario o huerto o objeto ya existe con el valor unico ya sea nombre o
+                                    nick.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">4003</div>
-                                <p class="text-justify">Este código hace referencia a error, donde define que el objeto, usuario, huerto no existe aún en la base de datos.</p>
+                                <p class="text-justify">Este código hace referencia a error, donde define que el objeto,
+                                    usuario, huerto no existe aún en la base de datos.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">2000</div>
-                                <p class="text-justify">Este código hace referencia a un registro de datos completado correctamente.</p>
+                                <p class="text-justify">Este código hace referencia a un registro de datos completado
+                                    correctamente.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
                                 <div class="flex items-center justify-center font-bold">2001</div>
-                                <p class="text-justify">Este código hace referencia a que la petición se a completado correctamente y se entrego una respuesta satisfactoria.</p>
+                                <p class="text-justify">Este código hace referencia a que la petición se a completado
+                                    correctamente y se entrego una respuesta satisfactoria.</p>
                             </section>
                         </div>
 

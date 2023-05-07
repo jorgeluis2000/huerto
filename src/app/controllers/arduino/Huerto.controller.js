@@ -46,7 +46,7 @@ export default class HuertoController {
             return res.status(500).json({
                 ok: false,
                 http_code: 5000,
-                message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
                 data: null
             })
         }
@@ -100,7 +100,7 @@ export default class HuertoController {
             return res.status(500).json({
                 ok: false,
                 http_code: 5000,
-                message: "Lo sentimos, tenemos probelmas en nuestros servicios.",
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
                 data: [],
                 pages: 0
             })
