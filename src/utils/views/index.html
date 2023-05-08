@@ -34,10 +34,13 @@
                         <div class="mt-12">
                             <p class="overflow-clip">Con este back-end podras registrar y obtener información sobre tus
                                 huertos. Estos son sus diferentes <spam class="font-bold text-green-600">end-points
-                                </spam>.</p>
+                                </spam>. Además debes de tener en cuenta que cuando veas un <span class="font-semibold text-green-600">?</span>
+                                en alguna de las variables solicitadas ya sea en el body o en los parametros, quiere decir que puedes omitir ese valor
+                                o colocar el valor, ya que es una variable opcional.
+                            </p>
                         </div>
                     </section>
-                    <section id="endpoints-user">
+                    <section id="#endpoints-user">
                         <!-- titulo -->
                         <div class="mt-6">
                             <div class="text-center w-full text-xl">
@@ -161,7 +164,7 @@
                         </div>
                     </section>
 
-                    <section id="endpoint-arduino">
+                    <section id="#endpoint-arduino">
                         <!-- titulo -->
                         <div class="mt-20">
                             <div class="text-center w-full text-base text-lg">
@@ -242,7 +245,7 @@
                         </div>
                     </section>
 
-                    <section id="endpoint-plants">
+                    <section id="#endpoint-plants">
                         <!-- titulo -->
                         <div class="mt-20">
                             <div class="text-center w-full text-base text-lg">
@@ -317,6 +320,72 @@
 
                         <!-- contenido end points -->
                         <div class="mt-5">
+                            <div class="w-auto mb-6">
+                                <span
+                                    class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-indigo-600">POST</span>
+                                <span class="font-bold">/api/v1/plant/edit/</span><span
+                                class="italic text-red-600 font-bold">:id</span> -
+                                <span>
+                                    Con este end-point actualizaras la información de una planta. Además todas las variables 
+                                    dentro del body son <span class="font-semibold text-green-600">OPCIONALES</span>.
+                                </span>
+                            </div>
+                            <!-- cuerpo de la peticion -->
+                            <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                                <div class="flex justify-end">
+                                    <span class="absolute p-1 rounded text-sm bg-teal-600">BODY</span>
+                                </div>
+                                <div class="pl-3">
+                                    <p class="text-indigo-500 font-bold">{</p>
+                                    <p><span class="pl-2 italic text-amber-600">"name_plant"</span>: <span
+                                            class="">"Arbol de mango"</span><span class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"description"</span>: <span class="">"Es
+                                            un arbol de mangos"</span><span class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"clime"</span>: <span class="">"Climas
+                                            humedos y calidos"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"flora"</span>: <span class="">"Cada 2
+                                            meses da flor"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"height"</span>: <span
+                                            class="text-indigo-500">10.26</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"humidity"</span>: <span
+                                            class="text-indigo-500"><span class="text-indigo-300">[</span>10, 10<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"light"</span>: <span
+                                            class="text-indigo-500">10.26</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"pests"</span>: <span class=""><span
+                                                class="">[</span>"Pajaros", "Hormigas"<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"solutions"</span>: <span class=""><span
+                                                class="text-indigo-300">[</span>"Para evitar
+                                            los pajaros en los arboles...", "Para evitar las hormigas..."<span
+                                                class="text-indigo-300">]</span></span><span
+                                            class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"space_earth"</span>: <span
+                                            class="text-indigo-500">10.5</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"specific_care"</span>: <span
+                                            class="">"Algo"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"type_earth"</span>: <span
+                                            class="">"Tierra humedad"</span><span class="text-gray-400">,</span></p>
+
+                                    <p><span class="pl-2 italic text-amber-600">"type_fruit"</span>: <span
+                                            class="">"Mango"</span><span class="text-gray-400"></span></p>
+                                    <p class="text-indigo-500 font-bold">}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- contenido end points -->
+                        <div class="mt-5">
                             <!-- end point -->
 
                             <div class="w-auto mb-6">
@@ -324,7 +393,8 @@
                                     class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-sky-600">GET</span>
                                 <span class="font-bold">/api/v1/plant/list/<span
                                         class="italic text-red-600">:limit</span>/<span
-                                        class="italic text-red-600">:page</span></span> - <span>Con este end point
+                                        class="italic text-red-600">:page</span>/<span
+                                        class="italic text-red-600">:name<span class="font-semibold text-red-700">?</span></span></span> - <span>Con este end point
                                     podras
                                     listar el log de cambio de clima de cada uno de los huertos.</span>
                             </div>
