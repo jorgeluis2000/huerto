@@ -93,10 +93,17 @@ export default class PlantController {
                 })
             }
 
-            const { limit, page } = params
+            const { limit, page, name } = params
+            /**
+             * @type {{ name_plant: string }}
+             */
+            let filter = {}
+            if (name !== undefined && name !== "") {
+                filter = { name_plant: name }
+            }
 
             const plantas = await PlantRepository.listarPlants(limit, page - 1)
-            const count = await PlantRepository.contarPlantas()
+            const count = await PlantRepository.contarPlantas(filter)
 
             if (plantas <= 0) {
                 return res.status(400).send({

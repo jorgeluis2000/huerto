@@ -44,12 +44,23 @@ export default class UsuarioController {
             }
 
             const usuario_registrado = await UsuarioRepositry.registrarUsuario(nick, password)
+            if (usuario_registrado === null) {
+                return res.status(400).json({
+                    ok: false,
+                    http_code: 5002,
+                    message: "Lo sentimos, hubo un problema interno y no se pudo registrar tu usuario.",
+                    data: null
+                })
+            }
+
+            
+            const newUser = { nick: usuario_registrado.nick, createdAt: usuario_registrado.createdAt, updatedAt: usuario_registrado.updatedAt }
 
             return res.status(201).json({
                 ok: true,
                 http_code: 2001,
                 message: "Bienvenido, ahora puedes autenticarte con los mismos datos que digitaste.",
-                data: usuario_registrado
+                data: newUser
             })
         } catch (error) {
             console.log("❌ Error System (UsuarioController):", error)

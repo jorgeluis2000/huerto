@@ -80,7 +80,7 @@ export default class HuertoRepositry {
     static async listarHuertos(idUsuario, limit, page) {
         try {
             const skip = limit * page
-            const huertos = await Huerto.find({ id_usuario: idUsuario }).limit(limit).skip(skip).select("-__v")
+            const huertos = await Huerto.find({ id_usuario: idUsuario }).limit(limit).skip(skip).select("-__v -id_usuario -updatedAt")
             return huertos
         } catch (error) {
             console.log("❌ Error System (HuertoRepository):", error);

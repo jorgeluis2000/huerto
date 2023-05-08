@@ -1,5 +1,7 @@
 import { validationResult } from "express-validator"
 import HuertoRepositry from "../../../utils/repositories/Huerto.repository.js"
+import { IParamsHuertoList } from "../../../utils/interfaces/Huerto.interface.js"
+import { validarParamsHuertos } from "../../../utils/services/ValidationHuerto.service.js"
 
 export default class HuertoController {
 
@@ -61,7 +63,22 @@ export default class HuertoController {
         try {
 
             const { user } = req.body
-            const { limit, page } = req.params
+            /**
+             * @type {IParamsHuertoList}
+             */
+            const { limit, page, name } = req.params
+
+            const validationParams = validarParamsHuertos(Number(limit), Number(page), name)
+
+            if(validationParams?.success !== true) {
+                return res.status(400).send({
+                    ok: false,
+                    message: validationParams.error.issues[0].message,
+                    http_code: 4001,
+                    data: [],
+                    pages: 0
+                })
+            }
 
             const new_limit = parseInt(limit)
             const new_page = parseInt(page)
