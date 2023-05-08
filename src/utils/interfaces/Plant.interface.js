@@ -1,7 +1,7 @@
 
 /**
  * Modelo de una planta.
- * @param {import("mongoose").ObjectId} _di - Id o identificador unico de la planta.
+ * @param {import("mongoose").ObjectId} _id - Id o identificador unico de la planta.
  * @param {string} name_plant - Nombre de la planta.
  * @param {string} description - Descripcion o resumen sobre la planta.
  * @param {number} height - Tamaño/Altura de la planta.

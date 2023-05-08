@@ -2,7 +2,7 @@ import { request, response } from "express"
 import { validationResult } from "express-validator"
 import { IParamsPlantList, IPlantRequest } from "../../../utils/interfaces/Plant.interface.js"
 import PlantRepository from "../../../utils/repositories/Plant.repository.js"
-import { validarParametrosObtenerPlanta, validationParamsListPlants, validationRegisterPlant } from "../../../utils/services/validation.service.js"
+import { validarEditarPlanta, validarParametrosObtenerPlanta, validationParamsListPlants, validationRegisterPlant } from "../../../utils/services/validation.service.js"
 
 export default class PlantController {
     constructor() { }
@@ -31,8 +31,8 @@ export default class PlantController {
             const plantBody = await req?.body
 
             const validation = validationRegisterPlant(plantBody)
-            
-            if(validation?.success !== true) {
+
+            if (validation?.success !== true) {
                 return res.status(400).send({
                     ok: false,
                     message: validation.error.issues[0].message,
@@ -40,10 +40,10 @@ export default class PlantController {
                     data: null
                 })
             }
-            
+
 
             const planta = await PlantRepository.crearPlant(plantBody)
-
+            planta
             if (planta === null) {
                 return res.status(400).send({
                     ok: false,
@@ -95,14 +95,14 @@ export default class PlantController {
 
             const { limit, page } = params
 
-            const plantas = await PlantRepository.listarPlants(limit, page -1)
+            const plantas = await PlantRepository.listarPlants(limit, page - 1)
             const count = await PlantRepository.contarPlantas()
 
             if (plantas <= 0) {
                 return res.status(400).send({
                     ok: false,
                     message: "Lo sentimos, no encontramos resultados para tu busqueda.",
-                    http_code: 4002,
+                    http_code: 4004,
                     data: plantas,
                     pages: 0
                 })
@@ -115,7 +115,7 @@ export default class PlantController {
                 data: plantas,
                 pages: Math.ceil(count / limit)
             })
-            
+
         } catch (error) {
             console.log("❌ Error System (PlantController ~ listarPlantas()):", error)
             return res.status(500).json({
@@ -129,7 +129,7 @@ export default class PlantController {
     }
 
     /**
-     * Controlador que lista las plantas
+     * Controlador obtiene una planta en especifico.
      * @param {import("express").Request} req - Request del controlador.
      * @param {import("express").Response} res - Response del controlador.
      */
@@ -139,7 +139,7 @@ export default class PlantController {
              * @type {{ id: string }}
              */
             const params = req.params
-            
+
             const validationParams = validarParametrosObtenerPlanta(params.id)
 
             if (validationParams?.success !== true) {
@@ -157,11 +157,11 @@ export default class PlantController {
                 return res.status(400).send({
                     ok: false,
                     message: "Lo sentimos, no encontramos resultados para tu busqueda.",
-                    http_code: 4002,
+                    http_code: 4004,
                     data: planta
                 })
             }
-            
+
             return res.status(200).json({
                 ok: true,
                 http_code: 2000,
@@ -175,6 +175,81 @@ export default class PlantController {
                 http_code: 5000,
                 message: "Lo sentimos, tenemos problemas en nuestros servicios.",
                 data: null
+            })
+        }
+    }
+
+    /**
+     * Controlador obtiene una planta en especifico.
+     * @param {import("express").Request} req - Request del controlador.
+     * @param {import("express").Response} res - Response del controlador.
+     */
+    static async editarPlanta(req = request, res = response) {
+        try {
+            /**
+             * @type {IPlantRequest}
+             */
+            const bodyPlant = req?.body
+            /**
+             * @type {{ id: string }}
+             */
+            const paramsPlant = req?.params
+
+            const validationParams = validarParametrosObtenerPlanta(paramsPlant.id)
+            const validationBody = validarEditarPlanta(bodyPlant)
+
+            if (validationParams?.success !== true) {
+                return res.status(400).send({
+                    ok: false,
+                    message: validationParams.error.issues[0].message,
+                    http_code: 4001,
+                    data: false
+                })
+            }
+
+
+            if (validationBody?.success !== true) {
+                return res.status(400).send({
+                    ok: false,
+                    message: validationBody.error.issues[0].message,
+                    http_code: 4001,
+                    data: false
+                })
+            }
+
+            const existPlant = await PlantRepository.existePlanta(paramsPlant.id)
+            if (!existPlant) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, no encontramos resultados sobre la planta a actualizar.",
+                    http_code: 4004,
+                    data: false
+                })
+            }
+
+            const planta = await PlantRepository.editarPlant(paramsPlant.id, bodyPlant)
+            if(planta === null) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, hubo algunos problemas en nuestros servicios.",
+                    http_code: 5002,
+                    data: false
+                })
+            }
+
+            return res.status(200).json({
+                ok: true,
+                http_code: 2000,
+                message: "Se han actualizado los datos correctamente.",
+                data: true
+            })
+        } catch (error) {
+            console.log("❌ Error System (PlantController ~ obtenerPlanta()):", error)
+            return res.status(500).json({
+                ok: false,
+                http_code: 5000,
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
+                data: false
             })
         }
     }

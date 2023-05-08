@@ -18,7 +18,7 @@ export function validationRegisterPlant(plant) {
         pests: z.array(z.string({ invalid_type_error: "Verifica los valores que envías." })),
         solutions: z.array(z.string({ invalid_type_error: "Verifica los valores que envías." })),
         space_earth: z.number({ invalid_type_error: "Verifica los valores que envías.", required_error: "Este campo es requerido." }).positive("El tamaño que habarca la planta en metros cuadrados no puede ser negativo."),
-        specific_care: z.string({ invalid_type_error: "Verifica los valores que envías."}).trim().nonempty("Faltan campos por completar"),
+        specific_care: z.string({ invalid_type_error: "Verifica los valores que envías." }).trim().nonempty("Faltan campos por completar"),
         type_earth: z.string({ invalid_type_error: "Verifica los valores que envías.", required_error: "Este campo es requerido." }).trim().nonempty("Faltan campos por completar."),
         type_fruit: z.string({ invalid_type_error: "Verifica los valores que envías.", required_error: "Este campo es requerido." }).trim().nonempty("Faltan campos por completar."),
     })
@@ -41,8 +41,36 @@ export function validationParamsListPlants(limit, page) {
     return paramsListPlants.safeParse({ limit, page })
 }
 
-
+/**
+ * 
+ * @param {string} id 
+ * @returns 
+ */
 export function validarParametrosObtenerPlanta(id) {
     const idValidation = z.string({ invalid_type_error: "El id debe ser una cadena de caracteres (string).", required_error: "Es necesario proporcionar la id de la planta a obtener." })
     return idValidation.safeParse(id)
+}
+
+/**
+ * 
+ * @param {IPlantRequest} planta 
+ * @returns 
+ */
+export function validarEditarPlanta(planta) {
+    const plantRequest = z.object({
+        name_plant: z.string({ invalid_type_error: "Verifica los valores que envías." }).trim().optional(),
+        description: z.string({ invalid_type_error: "Verifica los valores que envías."}).trim().optional(),
+        clime: z.string({ invalid_type_error: "Verifica los valores que envías." }).trim().optional(),
+        flora: z.string({ invalid_type_error: "Verifica los valores que envías."}).trim().optional(),
+        height: z.number({ invalid_type_error: "Verifica los valores que envías."}).positive("El tamaño o altura de la planta debe ser positivo.").optional(),
+        humidity: z.array(z.number({ invalid_type_error: "Verifica los valores que envías." })).length(2, "Verifica que hayas ingresado un valor minimo y maximo de la humedad.").optional(),
+        light: z.number({ invalid_type_error: "Verifica los valores que envías."}).optional(),
+        pests: z.array(z.string({ invalid_type_error: "Verifica los valores que envías." })).optional(),
+        solutions: z.array(z.string({ invalid_type_error: "Verifica los valores que envías." })).optional(),
+        space_earth: z.number({ invalid_type_error: "Verifica los valores que envías."}).positive("El tamaño que habarca la planta en metros cuadrados no puede ser negativo.").optional(),
+        specific_care: z.string({ invalid_type_error: "Verifica los valores que envías." }).trim().optional(),
+        type_earth: z.string({ invalid_type_error: "Verifica los valores que envías."}).trim().optional(),
+        type_fruit: z.string({ invalid_type_error: "Verifica los valores que envías."}).trim().optional()
+    })
+    return plantRequest.safeParse(planta)
 }

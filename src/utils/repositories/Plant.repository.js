@@ -5,9 +5,9 @@ export default class PlantRepository {
     /**
      * Método que crea una planta
      * @param {IPlantRequest} plant 
-     * @return
+     * @returns
      */
-    static async crearPlant (plant) {
+    static async crearPlant(plant) {
         try {
             const newPlant = new Plant(plant)
             await newPlant.save()
@@ -20,7 +20,41 @@ export default class PlantRepository {
 
     /**
      * 
-     * @param {import("mongoose").ObjectId} id 
+     * @param {string} id - Identificador unico de una planta
+     * @returns {Promise<boolean>}
+     */
+    static async existePlanta(id) {
+        try {
+            const existPlant = await Plant.findById(id)
+            if (existPlant !== null) {
+                return true
+            }
+            return false
+        } catch (error) {
+            console.log("❌ Error System (PlantRepository ~ existePlanta()):", error)
+            return false
+        }
+    }
+
+    /**
+     * Método que actualiza valores de una planta
+     * @param {string} id - Identificador unico de una planta.
+     * @param {IPlantRequest} plantEdit - Valores de la planta que se van a editar.
+     * @returns
+     */
+    static async editarPlant(id, plantEdit) {
+        try {
+            const updatePlant = await Plant.updateOne({ _id: id }, plantEdit, { returnDocument: "after", sanitizeFilter: true })
+            return updatePlant
+        } catch (error) {
+            console.log("❌ Error System (PlantRepository ~ editarPlant()):", error)
+            return null
+        }
+    }
+
+    /**
+     * 
+     * @param {import("mongoose").ObjectId} id - Identificador unico
      * @returns {Promise<IPlant | null>}
      */
     static async obtenerPlant(id) {
@@ -37,6 +71,7 @@ export default class PlantRepository {
      * Método que lista las plantas.
      * @param {number} limit - Limite de items por pagina.
      * @param {number} page - Pagina qu se quiere que se liste.
+     * @returns
      */
     static async listarPlants(limit, page) {
         try {
@@ -48,7 +83,7 @@ export default class PlantRepository {
             return []
         }
     }
-    
+
 
     static async contarPlantas() {
         try {
