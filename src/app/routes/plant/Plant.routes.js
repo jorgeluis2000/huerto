@@ -22,5 +22,6 @@ router.get("/list/:limit/:page/:name?", PlantController.listarPlantas)
 
 router.get("/plant/:id", PlantController.obtenerPlanta)
 
+router.delete("/plant/:id", PlantController.eliminarPlanta)
 
 export default router

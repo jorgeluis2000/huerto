@@ -412,6 +412,18 @@
                                     podras obtener una planta en especifico usando el id de la planta.</span>
                             </div>
                         </div>
+
+                        <!-- contenido end points -->
+                        <div class="mt-5">
+                            <!-- end point -->
+
+                            <div class="w-auto mb-6">
+                                <span
+                                    class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-red-700">DELETE</span>
+                                <span class="font-bold">/api/v1/plant/plant/<span
+                                        class="italic text-red-600">:id</span></span> - <span>Con este end-point podras eliminar una planta en especifico.</span>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="table-code">
@@ -434,23 +446,23 @@
                                 </div>
                             </header>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600">5000</div>
+                                <div class="flex items-center justify-center font-bold text-amber-600">5000</div>
                                 <p class="text-justify">Este código hace referencia a un error interno en los
                                     microservicios.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600">5001</div>
+                                <div class="flex items-center justify-center font-bold text-amber-600">5001</div>
                                 <p class="text-justify">Este código hace referencia a un error interno al momento de
                                     hacer un registro en la base de datos.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600">4001</div>
+                                <div class="flex items-center justify-center font-bold text-red-600">4001</div>
                                 <p class="text-justify">Este código hace referencia a un error de validación de los
                                     valores envíados en la petición,
                                     ya que estos puedan que no correspondan a los valores solicitados.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600">4002</div>
+                                <div class="flex items-center justify-center font-bold text-red-600">4002</div>
                                 <p class="text-justify">Este código hace referencia a un error en la validación al
                                     momento
                                     de enviar la respuesta, especificamete quiere
@@ -458,13 +470,13 @@
                                     nick.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600 text-green-600">4003</div>
+                                <div class="flex items-center justify-center font-bold text-red-600 text-green-600">4003</div>
                                 <p class="text-justify">Este código hace referencia a un error, donde define que el
                                     objeto,
                                     usuario, huerto no existe aún en la base de datos.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-green-600">4004</div>
+                                <div class="flex items-center justify-center font-bold text-red-600">4004</div>
                                 <p class="text-justify">Este código hace referencia al error <span
                                         class="text-green-600 font-semibold">NOT FOUND</span>, que quiere decir que no
                                     encontró los resultados buscados

@@ -180,7 +180,7 @@ export default class PlantController {
     }
 
     /**
-     * Controlador obtiene una planta en especifico.
+     * Controlador que edita una planta en especifico.
      * @param {import("express").Request} req - Request del controlador.
      * @param {import("express").Response} res - Response del controlador.
      */
@@ -190,6 +190,7 @@ export default class PlantController {
              * @type {IPlantRequest}
              */
             const bodyPlant = req?.body
+
             /**
              * @type {{ id: string }}
              */
@@ -245,6 +246,64 @@ export default class PlantController {
             })
         } catch (error) {
             console.log("❌ Error System (PlantController ~ obtenerPlanta()):", error)
+            return res.status(500).json({
+                ok: false,
+                http_code: 5000,
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
+                data: false
+            })
+        }
+    }
+
+
+    static async eliminarPlanta(req = request, res = response){
+        try {
+
+            /**
+             * @type {{ id: string }}
+             */
+            const paramsPlant = req?.params
+
+            const validationParams = validarParametrosObtenerPlanta(paramsPlant.id)
+
+            if (validationParams?.success !== true) {
+                return res.status(400).send({
+                    ok: false,
+                    message: validationParams.error.issues[0].message,
+                    http_code: 4001,
+                    data: false
+                })
+            }
+
+            const existPlant = await PlantRepository.existePlanta(paramsPlant.id)
+            if (!existPlant) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, no encontramos resultados sobre la planta a eliminar.",
+                    http_code: 4004,
+                    data: false
+                })
+            }
+
+            const planta = await PlantRepository.eliminarPlantas(paramsPlant.id)
+
+            if (planta === null) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, hubo algunos problemas en nuestros servicios.",
+                    http_code: 5002,
+                    data: false
+                })
+            }
+
+            return res.status(200).json({
+                ok: true,
+                http_code: 2000,
+                message: "Se ha eliminado la planta.",
+                data: true
+            })
+        } catch (error) {
+            console.log("❌ Error System (PlantController ~ eliminarPlanta()):", error)
             return res.status(500).json({
                 ok: false,
                 http_code: 5000,

@@ -84,14 +84,34 @@ export default class PlantRepository {
         }
     }
 
-
-    static async contarPlantas() {
+    /**
+     * Método que cuenta el número de plantas que hay en un documento y con respecto a un filtro.
+     * @param {{name_plant: string} | {}} filter - Filtro
+     * @returns {Promise<number>}
+     */
+    static async contarPlantas(filter = {}) {
         try {
-            const conteo = await Plant.countDocuments({})
+            const conteo = await Plant.countDocuments(filter)
             return conteo
         } catch (error) {
             console.log("❌ Error System (PlantRepository ~ contarPlantas()):", error)
             return 0
         }
     }
+    
+    /**
+     * 
+     * @param {string} id 
+     * @returns 
+     */
+    static async eliminarPlantas(id) {
+        try {
+            const plant = await Plant.deleteOne({ _id: id })
+            return plant
+        } catch (error) {
+            console.log("❌ Error System (PlantRepository ~ eliminarPlantas()):", error)
+            return null
+        }
+    } 
+
 }
