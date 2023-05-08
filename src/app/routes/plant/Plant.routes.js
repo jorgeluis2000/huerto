@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { body } from "express-validator"
-import PlantController from "../../controllers/plant/plant.controller.js"
+import PlantController from "../../controllers/plant/Plant.controller.js"
 
 
 let router = Router()
