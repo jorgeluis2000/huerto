@@ -18,5 +18,7 @@ router.post("/register", [
 
 router.get("/list/:limit/:page/:name?", PlantController.listarPlantas)
 
+router.get("/plant/:id", PlantController.obtenerPlanta)
+
 
 export default router

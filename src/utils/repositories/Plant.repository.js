@@ -25,7 +25,7 @@ export default class PlantRepository {
      */
     static async obtenerPlant(id) {
         try {
-            const plant = await Plant.findById(id)
+            const plant = await Plant.findById(id).select("-__v")
             return plant
         } catch (error) {
             console.log("❌ Error System (PlantRepository ~ obtenerPlant()):", error)
@@ -41,7 +41,7 @@ export default class PlantRepository {
     static async listarPlants(limit, page) {
         try {
             const skip = limit * page
-            const plants = await Plant.find({}).limit(limit).skip(skip).select("-__v")
+            const plants = await Plant.find({}).limit(limit).skip(skip).select("_id name_plant description type_fruit height updatedAt")
             return plants
         } catch (error) {
             console.log("❌ Error System (PlantRepository ~ listarPlants()):", error)

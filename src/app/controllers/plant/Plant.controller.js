@@ -2,7 +2,7 @@ import { request, response } from "express"
 import { validationResult } from "express-validator"
 import { IParamsPlantList, IPlantRequest } from "../../../utils/interfaces/Plant.interface.js"
 import PlantRepository from "../../../utils/repositories/Plant.repository.js"
-import { validationParamsListPlants, validationRegisterPlant } from "../../../utils/services/validation.service.js"
+import { validarParametrosObtenerPlanta, validationParamsListPlants, validationRegisterPlant } from "../../../utils/services/validation.service.js"
 
 export default class PlantController {
     constructor() { }
@@ -98,6 +98,16 @@ export default class PlantController {
             const plantas = await PlantRepository.listarPlants(limit, page -1)
             const count = await PlantRepository.contarPlantas()
 
+            if (plantas <= 0) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, no encontramos resultados para tu busqueda.",
+                    http_code: 4002,
+                    data: plantas,
+                    pages: 0
+                })
+            }
+
             return res.status(200).json({
                 ok: true,
                 http_code: 2000,
@@ -114,6 +124,57 @@ export default class PlantController {
                 message: "Lo sentimos, tenemos problemas en nuestros servicios.",
                 data: [],
                 pages: 0
+            })
+        }
+    }
+
+    /**
+     * Controlador que lista las plantas
+     * @param {import("express").Request} req - Request del controlador.
+     * @param {import("express").Response} res - Response del controlador.
+     */
+    static async obtenerPlanta(req = request, res = response) {
+        try {
+            /**
+             * @type {{ id: string }}
+             */
+            const params = req.params
+            
+            const validationParams = validarParametrosObtenerPlanta(params.id)
+
+            if (validationParams?.success !== true) {
+                return res.status(400).send({
+                    ok: false,
+                    message: validationParams.error.issues[0].message,
+                    http_code: 4001,
+                    data: null
+                })
+            }
+            const { id } = params
+            const planta = await PlantRepository.obtenerPlant(id)
+
+            if (planta === null) {
+                return res.status(400).send({
+                    ok: false,
+                    message: "Lo sentimos, no encontramos resultados para tu busqueda.",
+                    http_code: 4002,
+                    data: planta
+                })
+            }
+            
+            return res.status(200).json({
+                ok: true,
+                http_code: 2000,
+                message: "Hemos encontrado resultados de tu busqueda.",
+                data: planta
+            })
+        } catch (error) {
+            console.log("❌ Error System (PlantController ~ obtenerPlanta()):", error)
+            return res.status(500).json({
+                ok: false,
+                http_code: 5000,
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
+                data: null
             })
         }
     }
