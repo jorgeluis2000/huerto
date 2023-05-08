@@ -1,4 +1,4 @@
-import { number, z } from "zod";
+import { z } from "zod";
 import { IPlantRequest } from "../interfaces/Plant.interface.js";
 
 /**

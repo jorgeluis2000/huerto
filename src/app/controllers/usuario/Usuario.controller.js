@@ -1,7 +1,7 @@
 import { request, response } from "express"
+import { validationResult } from "express-validator"
 import UsuarioRepositry from "../../../utils/repositories/Usuario.repository.js"
 import { createToken } from "../../../utils/services/security.service.js"
-import { validationResult } from "express-validator"
 
 export default class UsuarioController {
 
