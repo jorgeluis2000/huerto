@@ -22,7 +22,8 @@ export default class ArduinoController {
                     data: null
                 })
             }
-            const { user, id_huerto, temperatura, humedad  } = req.body
+            
+            const { user, id_huerto, temperatura, humedad, humedad_ambiental  } = req.body
 
             const exist_huerto = HuertoRepositry.existeHuertoId(user._id, id_huerto)
 
@@ -35,7 +36,7 @@ export default class ArduinoController {
                 })
             }
 
-            const clima = await ClimaRepositry.crearClima(id_huerto, temperatura, humedad)
+            const clima = await ClimaRepositry.crearClima(id_huerto, temperatura, humedad, humedad_ambiental)
             
             if(clima === null) {
                 return res.status(400).json({

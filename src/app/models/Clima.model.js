@@ -12,6 +12,9 @@ const ClimaSchema = new Schema(
         },
         humedad: {
             type: Number
+        },
+        humedad_ambiental: {
+            type: Number
         }
     },
     {

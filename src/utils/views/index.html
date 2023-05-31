@@ -34,8 +34,10 @@
                         <div class="mt-12">
                             <p class="overflow-clip">Con este back-end podras registrar y obtener información sobre tus
                                 huertos. Estos son sus diferentes <spam class="font-bold text-green-600">end-points
-                                </spam>. Además debes de tener en cuenta que cuando veas un <span class="font-semibold text-green-600">?</span>
-                                en alguna de las variables solicitadas ya sea en el body o en los parametros, quiere decir que puedes omitir ese valor
+                                </spam>. Además debes de tener en cuenta que cuando veas un <span
+                                    class="font-semibold text-green-600">?</span>
+                                en alguna de las variables solicitadas ya sea en el body o en los parametros, quiere
+                                decir que puedes omitir ese valor
                                 o colocar el valor, ya que es una variable opcional.
                             </p>
                         </div>
@@ -184,7 +186,7 @@
                                     necesitas verificar el comportamiento climatico del mismo.
                                 </span>
                             </div>
-                            <!-- Cabecera de la petición -->
+                            <!-- Cabecera de la cabecera -->
                             <div class="mt-2 p-3 bg-gray-800 rounded text-white">
                                 <div class="flex justify-end">
                                     <span class="absolute p-1 rounded text-sm bg-fuchsia-600">HEAD</span>
@@ -210,7 +212,9 @@
                                     <p><span class="pl-2 italic text-amber-600">"temperatura"</span>: <span
                                             class="text-indigo-300">1.25</span><span class="text-gray-400">,</span></p>
                                     <p><span class="pl-2 italic text-amber-600">"humedad"</span>: <span
-                                            class="text-indigo-300">0.25</span><span class="text-gray-400"></span></p>
+                                            class="text-indigo-300">0.25</span><span class="text-gray-400">,</span></p>
+                                    <p><span class="pl-2 italic text-amber-600">"humedad_ambiental"</span>: <span
+                                            class="text-indigo-300">0.25</span><span class="text-gray-400">,</span></p>
                                     <p class="text-indigo-500 font-bold">}</p>
                                 </div>
                             </div>
@@ -324,9 +328,10 @@
                                 <span
                                     class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-indigo-600">POST</span>
                                 <span class="font-bold">/api/v1/plant/edit/</span><span
-                                class="italic text-red-600 font-bold">:id</span> -
+                                    class="italic text-red-600 font-bold">:id</span> -
                                 <span>
-                                    Con este end-point actualizaras la información de una planta. Además todas las variables 
+                                    Con este end-point actualizaras la información de una planta. Además todas las
+                                    variables
                                     dentro del body son <span class="font-semibold text-green-600">OPCIONALES</span>.
                                 </span>
                             </div>
@@ -394,7 +399,9 @@
                                 <span class="font-bold">/api/v1/plant/list/<span
                                         class="italic text-red-600">:limit</span>/<span
                                         class="italic text-red-600">:page</span>/<span
-                                        class="italic text-red-600">:name<span class="font-semibold text-red-700">?</span></span></span> - <span>Con este end point
+                                        class="italic text-red-600">:name<span
+                                            class="font-semibold text-red-700">?</span></span></span> - <span>Con este
+                                    end point
                                     podras
                                     listar el log de cambio de clima de cada uno de los huertos.</span>
                             </div>
@@ -421,7 +428,8 @@
                                 <span
                                     class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-red-700">DELETE</span>
                                 <span class="font-bold">/api/v1/plant/plant/<span
-                                        class="italic text-red-600">:id</span></span> - <span>Con este end-point podras eliminar una planta en especifico.</span>
+                                        class="italic text-red-600">:id</span></span> - <span>Con este end-point podras
+                                    eliminar una planta en especifico.</span>
                             </div>
                         </div>
                     </section>
@@ -470,7 +478,8 @@
                                     nick.</p>
                             </section>
                             <section class="grid grid-cols-2 text-center px-5 py-2 border-b-2 border-gray-300">
-                                <div class="flex items-center justify-center font-bold text-red-600 text-green-600">4003</div>
+                                <div class="flex items-center justify-center font-bold text-red-600 text-green-600">4003
+                                </div>
                                 <p class="text-justify">Este código hace referencia a un error, donde define que el
                                     objeto,
                                     usuario, huerto no existe aún en la base de datos.</p>

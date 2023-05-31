@@ -7,14 +7,16 @@ export default class ClimaRepositry {
      * @param {import("mongoose").ObjectId} idHuerto - Identificador del huerto
      * @param {number} temperatura - Temperatura registrada del clima.
      * @param {number} humedad - Humedad registrada del clima.
-     * @returns {Promise<{_id: import("mongoose").ObjectId; id_huerto: import("mongoose").ObjectId; temperatura: number; humedad: number; createdAt: Date; updatedAt: Date} | null>}
+     * @param {number} humedad_ambiental - Humedad del ambiente registrada del clima.
+     * @returns {Promise<{_id: import("mongoose").ObjectId; id_huerto: import("mongoose").ObjectId; temperatura: number; humedad: number; humedad_ambiental: number; createdAt: Date; updatedAt: Date} | null>}
      */
-    static async crearClima(idHuerto, temperatura, humedad) {
+    static async crearClima(idHuerto, temperatura, humedad, humedad_ambiental) {
         try {
             const clima = new Clima({
                 id_huerto: idHuerto,
                 temperatura,
-                humedad
+                humedad,
+                humedad_ambiental
             })
             await clima.save()
             return clima
@@ -29,7 +31,7 @@ export default class ClimaRepositry {
      * @param {import("mongoose").ObjectId} idHuerto - Identificadro del huerto.
      * @param {number} limit - Limite de filas que se traera sobre los registros del clima.
      * @param {number} page - Pagina a la cual se va a listar.
-     * @returns {Promise<[{_id: import("mongoose").ObjectId; id_huerto: import("mongoose").ObjectId; temperatura: number; humedad: number; createdAt: Date; updatedAt: Date}]>}
+     * @returns {Promise<[{_id: import("mongoose").ObjectId; id_huerto: import("mongoose").ObjectId; temperatura: number; humedad: number; humedad_ambiental: number; createdAt: Date; updatedAt: Date}]>}
      */
     static async listarRegistroDeClimas(idHuerto, limit, page) {
         try {
