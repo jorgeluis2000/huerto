@@ -65,6 +65,53 @@ export default class ArduinoController {
         }
     }
 
+    static async getLastOrFirstClimate(req, res) {
+        try {
+            const { user } = req.body
+            const { id, orden } = req.params
+
+            const new_orden = parseInt(orden)
+
+            if( typeof new_orden !== 'number') {
+                return res.status(400).json({
+                    ok: false,
+                    http_code: 4001,
+                    message: "Los valores tienen un tipo de dato que no corresponde.",
+                    data: null
+                })
+            }
+
+            const exist_huerto = HuertoRepositry.existeHuertoId(user._id, id)
+
+            if (!exist_huerto) {
+                return res.status(400).json({
+                    ok: false,
+                    http_code: 4003,
+                    message: "Lo sentimos, no pudimos encontrar resultados.",
+                    data: null
+                })
+            }
+
+            const climate = await ClimaRepositry.getLastOrFirstRegisterOfClime(id, new_orden)
+
+            return res.status(200).json({
+                ok: true,
+                http_code: 2000,
+                message: "Este es el clima que buscabas.",
+                data: climate
+            })
+
+        } catch (error) {
+            console.log("❌ Error System (ArduinoController):", error)
+            return res.status(500).json({
+                ok: false,
+                http_code: 5000,
+                message: "Lo sentimos, tenemos problemas en nuestros servicios.",
+                data: null
+            })
+        }
+    }
+
     /**
      * Lista el registro de climas de un huerto.
      * @param {import("express").Request} req - Request de la función.

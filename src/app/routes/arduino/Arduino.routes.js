@@ -17,4 +17,6 @@ router.post("/register-climate", [
 
 router.get("/climates/:id/:limit/:page", guardian.responseGuardianAuthentication, ArduinoController.listarClimas)
 
+router.get("/firstorlast/:id/:orden", guardian.responseGuardianAuthentication, ArduinoController.getLastOrFirstClimate)
+
 export default router

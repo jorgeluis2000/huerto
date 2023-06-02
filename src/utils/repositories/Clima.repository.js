@@ -45,6 +45,26 @@ export default class ClimaRepositry {
     }
 
     /**
+     * 
+     * @param {import("mongoose").ObjectId} idHuerto 
+     * @param {number} typeOrden 
+     * @returns {Promise<{_id: import("mongoose").ObjectId; id_huerto: import("mongoose").ObjectId; temperatura: number; humedad: number; humedad_ambiental: number; createdAt: Date; updatedAt: Date}>}
+     */
+    static async getLastOrFirstRegisterOfClime(idHuerto, typeOrden) {
+        try {
+            const ording = (typeOrden === 1) ? 'asc' : 'desc'
+            const climas = await Clima.find({ id_huerto: idHuerto }).sort([['createdAt', ording]]).limit(1).select("-__v")
+            if (climas.length > 0) {
+                return climas[0]
+            }
+            return null
+        } catch (error) {
+            console.log("❌ Error System (ClimaRepositry ~ getLastOrFirstRegisterOfClime):", error);
+            return null
+        }
+    }
+
+    /**
      * Conteo de registro de climas de un huerto.
      * @param {import("mongoose").ObjectId} idHuerto - Identificadro del huerto.
      * @returns {Promise<number>}
