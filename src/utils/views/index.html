@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -232,6 +232,32 @@
                                         class="italic text-red-600">:page</span></span> - <span>Con este end point
                                     podras
                                     listar el log de cambio de clima de cada uno de los huertos.</span>
+                            </div>
+                            <!-- Cabecera de la petición -->
+                            <div class="mt-2 p-3 bg-gray-800 rounded text-white">
+                                <div class="flex justify-end">
+                                    <span class="absolute p-1 rounded text-sm bg-fuchsia-600">HEAD</span>
+                                </div>
+                                <div class="pl-3">
+                                    <p class="text-indigo-500 font-bold">{</p>
+                                    <p><span class="pl-2 italic text-amber-600">"Autorization"</span>: "<span
+                                            class="text-red-300">bearer</span> token-authentication"<span
+                                            class="text-gray-400"></span></p>
+                                    <p class="text-indigo-500 font-bold">}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <!-- end point -->
+
+                            <div class="w-auto mb-6">
+                                <span
+                                    class="md:p-2 sm:mr-7 p-1 mr-5 rounded text-white font-mono text-sm bg-sky-600">GET</span>
+                                <span class="font-bold">/api/v1/arduino/firstorlast/<span
+                                        class="italic text-red-600">:id</span>/<span
+                                        class="italic text-red-600">:orden</span></span> - <span>Con este end-point
+                                    podras obtener el ultimo o el primer clima registrado en el huerto.</span>
                             </div>
                             <!-- Cabecera de la petición -->
                             <div class="mt-2 p-3 bg-gray-800 rounded text-white">
